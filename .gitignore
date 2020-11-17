@@ -43,3 +43,6 @@ sysinfo.txt
 
 # JetBrains IDEs
 .idea/
+
+# f# interactive file
+*.fsx
