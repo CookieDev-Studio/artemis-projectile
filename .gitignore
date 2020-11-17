@@ -4,6 +4,10 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
