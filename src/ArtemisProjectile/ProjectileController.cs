@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArtemisProjectile
@@ -121,7 +120,6 @@ namespace ArtemisProjectile
         protected virtual void OnRicochet(float inAngle, Vector3 entryDirection, Vector3 exitDirection, RaycastHit hit) { }
 
         private ProjectileResult result;
-
         private List<DebugLine> debugLines = new List<DebugLine>();
 
         protected virtual void FixedUpdate()
@@ -188,24 +186,13 @@ namespace ArtemisProjectile
         protected virtual void Update()
         {
             if (DebugEnabled)
-                RenderLines(debugLines);
+                ProjectileControllerExtentions.RenderLines(debugLines);
         }
 
         protected virtual void OnDestroy()
         {
             if (DebugEnabled && DebugLinesSurviveDestroy)
-                RenderLines(debugLines, float.PositiveInfinity);
-        }
-
-        private void RenderLines(List<DebugLine> lines)
-        {
-            foreach (var line in lines)
-                line.Render();
-        }
-        private void RenderLines(List<DebugLine> lines, float duration)
-        {
-            foreach (var line in lines)
-                line.Render(duration);
+                ProjectileControllerExtentions.RenderLines(debugLines, float.PositiveInfinity);
         }
     }
 }

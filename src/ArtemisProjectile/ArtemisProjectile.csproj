@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectileFunctions\ProjectileFunctions.fsproj" />
+    <ProjectReference Include="..\ArtemisProjectile.Functions\ArtemisProjectile.Functions.fsproj" />
   </ItemGroup>
 
   <ItemGroup>
