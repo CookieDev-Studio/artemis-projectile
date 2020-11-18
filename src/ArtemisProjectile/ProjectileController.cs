@@ -151,7 +151,9 @@ namespace ArtemisProjectile
             protected set => _penetrationColor = value;
         }
 
-        ///The velocity vector of the projectile
+        /// <summary>
+        /// The velocity vector of the projectile
+        /// </summary>
         public Vector3 Velocity { get; private set; }
 
         /// <summary>

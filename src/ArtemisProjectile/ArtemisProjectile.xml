@@ -70,7 +70,9 @@
             </summary>
         </member>
         <member name="P:ArtemisProjectile.ProjectileController.Velocity">
+            <summary>
             The velocity vector of the projectile
+            </summary>
         </member>
         <member name="M:ArtemisProjectile.ProjectileController.OnPenetrationEnter(UnityEngine.RaycastHit,UnityEngine.Vector3,System.Single)">
             <summary>
