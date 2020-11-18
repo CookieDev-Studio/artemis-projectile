@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ArtemisProjectile
+namespace ArtemisProjectile.Demo
 {
     public class ExampleImplementation : ProjectileController
     {
