@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Online Scene.unity
     guid: e62247242b59ec341bd55b0d27a521da
   - enabled: 1
-    path: Assets/artemis.projectile/Demo/Example Scene.unity
+    path: Assets/artemis.projectile/Demo/Demo Scene.unity
     guid: 744e32d37e58dd84e862833244fed620
   m_configObjects: {}
