@@ -4,8 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>ArtemisProjectile.Functions.XML</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="scratchpad.fsx" />
     <Compile Include="Domain.fs" />
     <Compile Include="Projectile.fs" />
   </ItemGroup>

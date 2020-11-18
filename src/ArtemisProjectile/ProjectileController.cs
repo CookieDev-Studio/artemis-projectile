@@ -3,11 +3,17 @@ using UnityEngine;
 
 namespace ArtemisProjectile
 {
+    /// <summary>
+    /// Base class For Artemis Projectile
+    /// </summary>
     public abstract class ProjectileController : MonoBehaviour
     {
         [SerializeField]
         [HideInInspector]
         private float _gravityMultiplier = 1;
+        /// <summary>
+        /// The value by which Physics.gravity is multiplied.
+        /// </summary>
         public float GravityMultiplier
         {
             get => _gravityMultiplier;
@@ -17,6 +23,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private float _speed = 300;
+        /// <summary>
+        /// The speed of the projectile in m/s.
+        /// </summary>
         public float Speed
         {
             get => _speed;
@@ -25,6 +34,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private LayerMask _layerMask = new LayerMask() {value = -1 };
+        /// <summary>
+        /// The layer mask the projectile uses to filter collisions.
+        /// </summary>
         public LayerMask LayerMask
         {
             get => _layerMask;
@@ -34,6 +46,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private bool _penetrationEnabled = true;
+        /// <summary>
+        /// Whether the projectile should be able to penetrate objects.
+        /// </summary>
         public bool PenetrationEnabled
         {
             get => _penetrationEnabled;
@@ -43,6 +58,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private float _penetration = 50;
+        /// <summary>
+        /// The maximum thickness the projectile can penetrate in mm. (inclusive)
+        /// </summary>
         public float Penetration
         {
             get => PenetrationEnabled ? _penetration : 0;
@@ -52,6 +70,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private bool _ricochetEnabled = true;
+        /// <summary>
+        /// Whether the projectile should bounce off of surfaces.
+        /// </summary>
         public bool RicochetEnabled
         {
             get => _ricochetEnabled;
@@ -61,6 +82,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private float _ricochetAngle = 15;
+        /// <summary>
+        /// The maximum angle at which a ricochet can occur. (inclusive)
+        /// </summary>
         public float RicochetAngle
         {
             get => RicochetEnabled ? _ricochetAngle : 0;
@@ -70,6 +94,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private bool _debugEnabled;
+        /// <summary>
+        /// Enable Debbuging tools
+        /// </summary>
         public bool DebugEnabled
         {
             get => Debug.isDebugBuild && _debugEnabled;
@@ -78,16 +105,22 @@ namespace ArtemisProjectile
 
         [SerializeField]
         [HideInInspector]
-        private bool _debugLinesSurviveDestroy;
-        public bool DebugLinesSurviveDestroy
+        private bool _debugPathSurvivesDestroy;
+        /// <summary>
+        /// Lines drawn during debug will remain after the projectile is destroyed
+        /// </summary>
+        public bool DebugPathSurvivesDestroy
         {
-            get => _debugLinesSurviveDestroy;
-            protected set => _debugLinesSurviveDestroy = value;
+            get => _debugPathSurvivesDestroy;
+            protected set => _debugPathSurvivesDestroy = value;
         }
 
         [SerializeField]
         [HideInInspector]
         private Color _pathColor = Color.white;
+        /// <summary>
+        /// The color path lines will be drawn
+        /// </summary>
         public Color PathColor
         {
             get => _pathColor;
@@ -97,6 +130,9 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private Color _normalColor = Color.yellow;
+        /// <summary>
+        /// The color normals will be drawn
+        /// </summary>
         public Color NormalColor
         {
             get => _normalColor;
@@ -106,22 +142,50 @@ namespace ArtemisProjectile
         [SerializeField]
         [HideInInspector]
         private Color _penetrationColor = Color.magenta;
+        /// <summary>
+        /// The color the path through an object is drawn
+        /// </summary>
         public Color PenetrationColor
         {
             get => _penetrationColor;
             protected set => _penetrationColor = value;
         }
 
+        ///The velocity vector of the projectile
         public Vector3 Velocity { get; private set; }
 
+        /// <summary>
+        /// Called when the projectile sucssesfully penetrates an object
+        /// </summary>
+        /// <param name="entry">The RacastHit of when the projectile entered the object</param>
+        /// <param name="velocity">The velocity at which the projectile struck the object</param>
+        /// <param name="thickness">The reletive thickness of the object</param>
         protected virtual void OnPenetrationEnter(RaycastHit entry, Vector3 velocity, float thickness) { }
+        /// <summary>
+        /// Called when the projectile exits the object
+        /// </summary>
+        /// <param name="exit">The RacastHit of when the projectile exited the object</param>
+        /// <param name="velocity">The velocity at which the projectile exited the object</param>
         protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity) { }
+        /// <summary>
+        /// Called when the Projectile fails to penetrate an object. if penetration is disabled, this will always be called upon collision.
+        /// </summary>
+        /// <param name="hit">The RaycastHit of the collision with the object</param>
+        /// <param name="velocity">The velocity at which the projectile struck the object</param>
         protected virtual void OnPenetrationFailed(RaycastHit hit, Vector3 velocity) { }
+        /// <summary>
+        /// Called when the projectile ricochets off of an object
+        /// </summary>
+        /// <param name="inAngle"></param>
+        /// <param name="entryDirection"></param>
+        /// <param name="exitDirection"></param>
+        /// <param name="hit"></param>
         protected virtual void OnRicochet(float inAngle, Vector3 entryDirection, Vector3 exitDirection, RaycastHit hit) { }
 
         private ProjectileResult result;
         private List<DebugLine> debugLines = new List<DebugLine>();
 
+        ///<inheritdoc/> 
         protected virtual void FixedUpdate()
         {
             result = Projectile.CalculateTrajectory(
@@ -182,16 +246,17 @@ namespace ArtemisProjectile
             transform.position = result.position;
             Velocity = result.velocity;
         }
-
+        ///<inheritdoc/>
         protected virtual void Update()
         {
             if (DebugEnabled)
                 ProjectileControllerExtentions.RenderLines(debugLines);
         }
 
+        ///<inheritdoc/>
         protected virtual void OnDestroy()
         {
-            if (DebugEnabled && DebugLinesSurviveDestroy)
+            if (DebugEnabled && DebugPathSurvivesDestroy)
                 ProjectileControllerExtentions.RenderLines(debugLines, float.PositiveInfinity);
         }
     }

@@ -3,8 +3,10 @@
 open UnityEngine
 open System
 
+///test
 module Projectile =
-
+    ///<summary>Calculates the path a projectile will travel in 1 fixed time step.</summary>
+    ///<param name="position"> the current position of the projectile</param>
     let CalculateTrajectory position direction speed (penetration : single) gravityMultiplier ricochetAngle layerMask = 
         let GetPosition (position : Vector3) (direction : Vector3) time = 
             let angle = 
@@ -15,7 +17,7 @@ module Projectile =
         
             Vector3
                 ( position.x + direction.x * time * speed,
-                  speed * time * Mathf.Sin(angle * Mathf.Deg2Rad) - (4.9f * gravityMultiplier) * Mathf.Pow(time, 2.0f) + position.y,
+                  speed * time * Mathf.Sin(angle * Mathf.Deg2Rad) - (Physics.gravity.y * gravityMultiplier) * Mathf.Pow(time, 2.0f) + position.y,
                   position.z + direction.z * time * speed )
 
         let rec GetResults (startPoint : Vector3) (endPoint : Vector3) distanceLeft projectileResult =

@@ -62,6 +62,8 @@
      <None Include="Assets\artemis.projectile\Assemblies\ArtemisProjectile.dll" />
      <None Include="Assets\artemis.projectile\Assemblies\ArtemisProjectile.Functions.dll" />
      <None Include="Assets\artemis.projectile\Assemblies\FSharp.Core.dll" />
+     <None Include="Assets\artemis.projectile\Assemblies\ArtemisProjectile.xml" />
+     <None Include="Assets\artemis.projectile\Assemblies\ArtemisProjectile.Functions.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.8f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -251,6 +253,15 @@
     <Reference Include="UnityEditor">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.8f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="ArtemisProjectile">
+      <HintPath>Assets\artemis.projectile\Assemblies\ArtemisProjectile.dll</HintPath>
+    </Reference>
+    <Reference Include="ArtemisProjectile.Functions">
+      <HintPath>Assets\artemis.projectile\Assemblies\ArtemisProjectile.Functions.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core">
+      <HintPath>Assets\artemis.projectile\Assemblies\FSharp.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.3.5\Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -259,15 +270,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>Library\PackageCache\com.unity.analytics@3.3.5\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="FSharp.Core">
-      <HintPath>Assets\artemis.projectile\Assemblies\FSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="ArtemisProjectile">
-      <HintPath>Assets\artemis.projectile\Assemblies\ArtemisProjectile.dll</HintPath>
-    </Reference>
-    <Reference Include="ArtemisProjectile.Functions">
-      <HintPath>Assets\artemis.projectile\Assemblies\ArtemisProjectile.Functions.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.8f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

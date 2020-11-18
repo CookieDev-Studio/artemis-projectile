@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: bd5984a7895543042b6ee08ae073b7d0
+TextScriptImporter:
+  externalObjects:
+  - first:
+      type: 
+      assembly: ArtemisProjectile
+      name: 
+    second: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
