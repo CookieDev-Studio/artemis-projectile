@@ -1221,8 +1221,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 2
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1115263581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,10 +1239,12 @@ MonoBehaviour:
   body: {fileID: 684948630}
   BulletPrefab: {fileID: 6043145849923807600, guid: 34585ff2c98d16b4cb5788146f5e4d16,
     type: 3}
+  RigidBodyBulletPrefab: {fileID: 6043145849923807600, guid: 45ef14d8d15782a48a8cdbcb9565266d,
+    type: 3}
   jumpHight: 3
   speed: 6
   sprintMultiplier: 0.25
-  sensitivity: 600
+  sensitivity: 0
   zoomLevel: 4
 --- !u!4 &1115263582
 Transform:
@@ -1251,7 +1253,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115263579}
-  m_LocalRotation: {x: -0, y: 0.99831265, z: -0, w: -0.058068685}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2.2361221, y: 0.6000004, z: 6.4580765}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1259,7 +1261,7 @@ Transform:
   - {fileID: 684948632}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 186.658, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1118100319
 GameObject:
   m_ObjectHideFlags: 0

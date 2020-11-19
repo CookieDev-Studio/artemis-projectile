@@ -11,7 +11,6 @@ namespace ArtemisProjectile.Demo
         {
             color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
         }
-
         protected override void OnPenetrationEnter(RaycastHit entry, Vector3 velocity, float thickness)
         {
             var mark = Instantiate(bulletmarkPrefab, entry.point + entry.normal * 0.01f, Quaternion.LookRotation(entry.normal));
@@ -26,6 +25,11 @@ namespace ArtemisProjectile.Demo
         protected override void OnPenetrationFailed(RaycastHit hit, Vector3 velocity)
         {
             Destroy(gameObject);
+        }
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
         }
     }
 }

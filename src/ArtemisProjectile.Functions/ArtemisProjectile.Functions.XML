@@ -2,7 +2,7 @@
 <doc>
 <assembly><name>ArtemisProjectile.Functions</name></assembly>
 <members>
-<member name="M:ArtemisProjectile.Projectile.CalculateTrajectory(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Single,System.Int32)">
+<member name="M:ArtemisProjectile.Projectile.CalculateTrajectory(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Int32)">
 <summary>Calculates the path a projectile will travel in 1 fixed time step.</summary>
 <param name="position"> the current position of the projectile</param>
 </member>

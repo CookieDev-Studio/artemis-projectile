@@ -7,18 +7,14 @@ open System
 module Projectile =
     ///<summary>Calculates the path a projectile will travel in 1 fixed time step.</summary>
     ///<param name="position"> the current position of the projectile</param>
-    let CalculateTrajectory position direction speed (penetration : single) gravityMultiplier ricochetAngle layerMask = 
-        let GetPosition (position : Vector3) (direction : Vector3) time = 
-            let angle = 
-                let positiveAngle = Vector3.Angle(Vector3(direction.x, 0.0f, direction.z), direction)
-                match direction.y >= 0.0f with
-                | true -> positiveAngle
-                | false -> -positiveAngle 
-        
+    let CalculateTrajectory position (velocity : Vector3 ) (penetration : single) gravityMultiplier ricochetAngle layerMask = 
+        let velocityThisStep = 
             Vector3
-                ( position.x + direction.x * time * speed,
-                  speed * time * Mathf.Sin(angle * Mathf.Deg2Rad) - (Physics.gravity.y * gravityMultiplier) * Mathf.Pow(time, 2.0f) + position.y,
-                  position.z + direction.z * time * speed )
+                ( velocity.x,
+                  velocity.y + Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime,
+                  velocity.z)
+
+        let positionThisStep = position + velocityThisStep * Time.fixedDeltaTime
 
         let rec GetResults (startPoint : Vector3) (endPoint : Vector3) distanceLeft projectileResult =
             let mutable contact = RaycastHit()
@@ -29,12 +25,12 @@ module Projectile =
                 match hitObject with
                 | false -> NoContact
                 | true ->
-                    let inDirection = (endPoint - startPoint).normalized
+                    let inDirection = projectileResult.velocity.normalized
                     let angle = -(90.0f - Vector3.Angle(contact.normal, inDirection))
 
                     if angle <= ricochetAngle then
-                        let outDirection = Vector3.Reflect(inDirection, contact.normal).normalized
-                        Ricochet(inDirection * speed, outDirection * speed, angle, contact)
+                        let outVelocity = Vector3.Reflect(projectileResult.velocity, contact.normal)
+                        Ricochet(projectileResult.velocity, outVelocity, angle, contact)
                     else
                         let hits =  
                             let backCastStartPoint = Vector3(contact.point.x + inDirection.x * 10f, contact.point.y + inDirection.y * 10f, contact.point.z + inDirection.z * 10f)
@@ -47,14 +43,14 @@ module Projectile =
                             |> Array.sortBy(fun x -> x.distance)
                         
                         if hits.Length = 0 then
-                            FailedPenetration(inDirection * speed, contact, Single.PositiveInfinity)
+                            FailedPenetration(projectileResult.velocity, contact, Single.PositiveInfinity)
                         else
                             let exitHit = Array.last(hits)
                             let thickness = Vector3.Distance(contact.point, exitHit.point) * 1000f
 
                             if thickness < penetration
-                                then Penetration(inDirection * speed, contact, exitHit, thickness)
-                                else FailedPenetration(inDirection * speed, contact, thickness)
+                                then Penetration(projectileResult.velocity, contact, exitHit, thickness)
+                                else FailedPenetration(projectileResult.velocity, contact, thickness)
 
             match result with
             | Ricochet (_, outVelocity, _, hit) -> 
@@ -79,7 +75,7 @@ module Projectile =
                     (Vector3(exit.point.x + direction.x * newDistanceLeft, exit.point.y + direction.y * newDistanceLeft, exit.point.z + direction.z * newDistanceLeft))
                     newDistanceLeft 
                     { position = entry.point
-                      velocity = velocity
+                      velocity = projectileResult.velocity
                       results = projectileResult.results |> Array.append [|result|] }
 
             | FailedPenetration (_,hit,_) ->
@@ -88,11 +84,8 @@ module Projectile =
                     results = projectileResult.results |> Array.append [|result|] }
             | NoContact -> 
                 { projectileResult with 
-                    position = endPoint 
-                    velocity = (endPoint - startPoint).normalized * speed}
+                    position = endPoint }
 
-        let startPoint = GetPosition position direction 0f
-        let endPoint = GetPosition position direction Time.fixedDeltaTime
-        let projectileResult = GetResults startPoint endPoint (Vector3.Distance(startPoint, endPoint)) { position = startPoint; velocity = direction * speed; results = [||]; }
+        let projectileResult = GetResults position positionThisStep (Vector3.Distance(position, positionThisStep)) { position = position; velocity = velocityThisStep; results = [||]; }
         { projectileResult with 
             results = projectileResult.results |> Array.rev }

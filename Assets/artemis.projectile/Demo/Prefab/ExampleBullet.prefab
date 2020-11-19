@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9193399784155111521}
   - component: {fileID: 4768621837006262123}
   m_Layer: 0
-  m_Name: TestBullet
+  m_Name: ExampleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravityMultiplier: 1
-  _speed: 300
+  _speed: 10
   _layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -103,8 +103,8 @@ MonoBehaviour:
   _penetration: 60
   _ricochetEnabled: 1
   _ricochetAngle: 15
-  _debugEnabled: 0
-  _debugLinesSurviveDestroy: 0
+  _debugEnabled: 1
+  _debugPathSurvivesDestroy: 1
   _pathColor: {r: 1, g: 1, b: 1, a: 1}
   _normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _penetrationColor: {r: 1, g: 0, b: 1, a: 1}

@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public GameObject head;
     public GameObject body;
     public GameObject BulletPrefab;
+    public GameObject RigidBodyBulletPrefab;
 
     [SerializeField] private float jumpHight;
     [SerializeField] private float speed;
@@ -145,6 +146,8 @@ public class PlayerController : MonoBehaviour
     {
         //GameObject bullet = Instantiate(BulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.Euler(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 1));
         GameObject bullet = Instantiate(BulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.identity);
+        GameObject rbBullet = Instantiate(RigidBodyBulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.identity);
         Destroy(bullet, 3);
+        Destroy(rbBullet, 3);
     }
 }

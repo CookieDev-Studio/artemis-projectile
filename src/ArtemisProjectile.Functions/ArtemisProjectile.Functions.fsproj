@@ -9,9 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Script1.fsx" />
     <Compile Include="Domain.fs" />
     <Compile Include="Projectile.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
   <ItemGroup>
     <Reference Include="UnityEngine">

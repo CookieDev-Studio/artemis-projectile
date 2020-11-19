@@ -33,7 +33,7 @@ namespace ArtemisProjectile
         }
         [SerializeField]
         [HideInInspector]
-        private LayerMask _layerMask = new LayerMask() {value = -1 };
+        private LayerMask _layerMask = new LayerMask() { value = -1 };
         /// <summary>
         /// The layer mask the projectile uses to filter collisions.
         /// </summary>
@@ -88,7 +88,7 @@ namespace ArtemisProjectile
         public float RicochetAngle
         {
             get => RicochetEnabled ? _ricochetAngle : 0;
-            protected set => _ricochetAngle = value; 
+            protected set => _ricochetAngle = value;
         }
 
         [SerializeField]
@@ -159,7 +159,7 @@ namespace ArtemisProjectile
         /// <summary>
         /// Called when the projectile sucssesfully penetrates an object
         /// </summary>
-        /// <param name="entry">The RacastHit of when the projectile entered the object</param>
+        /// <param name="entry">The RaycastHit of when the projectile entered the object</param>
         /// <param name="velocity">The velocity at which the projectile struck the object</param>
         /// <param name="thickness">The reletive thickness of the object</param>
         protected virtual void OnPenetrationEnter(RaycastHit entry, Vector3 velocity, float thickness) { }
@@ -192,8 +192,7 @@ namespace ArtemisProjectile
         {
             result = Projectile.CalculateTrajectory(
                 transform.position,
-                result?.velocity.normalized ?? transform.forward,
-                result?.velocity.magnitude ?? Speed,
+                result?.velocity ?? transform.forward * Speed,
                 Penetration,
                 GravityMultiplier,
                 RicochetAngle,
@@ -214,7 +213,7 @@ namespace ArtemisProjectile
                             var distance = 0.1f;
                             debugLines.Add(
                                 new DebugLine(
-                                    ricochet.hit.point, 
+                                    ricochet.hit.point,
                                     new Vector3(ricochet.hit.point.x + ricochet.hit.normal.x * distance, ricochet.hit.point.y + ricochet.hit.normal.y * distance, ricochet.hit.point.z + ricochet.hit.normal.z * distance),
                                     NormalColor)
                                 );

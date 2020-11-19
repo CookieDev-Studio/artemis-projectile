@@ -78,7 +78,7 @@
             <summary>
             Called when the projectile sucssesfully penetrates an object
             </summary>
-            <param name="entry">The RacastHit of when the projectile entered the object</param>
+            <param name="entry">The RaycastHit of when the projectile entered the object</param>
             <param name="velocity">The velocity at which the projectile struck the object</param>
             <param name="thickness">The reletive thickness of the object</param>
         </member>

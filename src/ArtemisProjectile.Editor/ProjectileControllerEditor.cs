@@ -17,7 +17,7 @@ namespace ArtemisProjectile
         SerializedProperty ricochetAngle;
 
         SerializedProperty debugEnabled;
-        SerializedProperty debugLinesSurviveDestroy;
+        SerializedProperty debugPathSurvivesDestroy;
         SerializedProperty pathColor;
         SerializedProperty normalColor;
         SerializedProperty penetrationColor;
@@ -39,7 +39,7 @@ namespace ArtemisProjectile
             ricochetAngle = serializedObject.FindProperty("_ricochetAngle");
 
             debugEnabled = serializedObject.FindProperty("_debugEnabled");
-            debugLinesSurviveDestroy = serializedObject.FindProperty("_debugLinesSurviveDestroy");
+            debugPathSurvivesDestroy = serializedObject.FindProperty("_debugPathSurvivesDestroy");
             pathColor = serializedObject.FindProperty("_pathColor");
             normalColor = serializedObject.FindProperty("_normalColor");
             penetrationColor = serializedObject.FindProperty("_penetrationColor");
@@ -94,7 +94,7 @@ namespace ArtemisProjectile
                 {
 
                     EditorGUILayout.PropertyField(
-                        debugLinesSurviveDestroy,
+                        debugPathSurvivesDestroy,
                         new GUIContent()
                         {
                             text = "Ignore Destroy",
@@ -110,6 +110,7 @@ namespace ArtemisProjectile
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
 
+            EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();
             DrawDefaultInspector();
         }

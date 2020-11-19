@@ -1,7 +1,12 @@
 fileFormatVersion: 2
 guid: fe6bf26fdce8b2341ae294051bdcd9e3
 TextScriptImporter:
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: 
+      assembly: 
+      name: 
+    second: {fileID: -1121539586, guid: 4820f9ac32f76db4a9c4700df517b6cf, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
