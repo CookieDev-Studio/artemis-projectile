@@ -1,0 +1,17 @@
+{
+  "name": "artemis.projectile",
+  "version": "1.0.0",
+  "displayName": "Artemis Projectile",
+  "description": "This is an example package",
+  "unity": "2020.1",
+ "keywords": [
+    "keyword1",
+    "keyword2",
+    "keyword3"
+  ],
+  "author": {
+    "name": "Cameron Proulx",
+    "email": "cookiedevstudio@outlook.com",
+    "url": "https://cookiedevstudio.netlify.app"
+  }
+}
