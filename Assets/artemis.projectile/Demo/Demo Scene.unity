@@ -1244,7 +1244,7 @@ MonoBehaviour:
   jumpHight: 3
   speed: 6
   sprintMultiplier: 0.25
-  sensitivity: 0
+  sensitivity: 600
   zoomLevel: 4
 --- !u!4 &1115263582
 Transform:
