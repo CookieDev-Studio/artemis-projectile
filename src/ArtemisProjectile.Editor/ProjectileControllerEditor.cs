@@ -48,6 +48,9 @@ namespace ArtemisProjectile
 
         public override void OnInspectorGUI()
         {
+            DrawDefaultInspector();
+            EditorGUILayout.Space();
+
             var indentedWidth = Mathf.Max(Screen.width * 0.45f - 25, 134);
 
             serializedObject.Update();
@@ -110,9 +113,7 @@ namespace ArtemisProjectile
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
 
-            EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();
-            DrawDefaultInspector();
         }
     }
 }
