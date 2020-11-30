@@ -11,6 +11,7 @@ This is a Unity component that controls a projectile.
 - Use the overridable methods to implement your custom logic
 
 ## ArtemisProjectile.ProjectileController
+This is the base MonoBehaviour that you should inherit from.
 ### Properties
 ```c#
 // The speed of the projectile in m/s.
@@ -99,6 +100,7 @@ protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity) { }
 //
 //   velocity:
 //     The velocity at which the projectile struck the object
+//
 //   thickness:
 //     The reletive thickness of the object
 protected virtual void OnPenetrationFailed(RaycastHit hit, Vector3 velocity, float thickness) { }
@@ -119,6 +121,33 @@ protected virtual void OnPenetrationFailed(RaycastHit hit, Vector3 velocity, flo
 //   exitVelocity:
 //     The velocity of the projectile after reflection.
 protected virtual void OnRicochet(RaycastHit hit, float inAngle, Vector3 entryVelocity, Vector3 exitVelocity) { }
+```
+## ArtemisProjectile.Projectile
+This class holds the static functions that ProjectileController uses. You may use them if you wish to create your own monobehaviour rather then inherit from ProjectileController; Otherwise, you can just ignore this class.
+```c#
+//
+// Summary:
+//     Calculates the path a projectile will travel in 1 fixed time step.
+//
+// Parameters:
+//   position:
+//     The current position of the projectile.
+//
+//   velocity:
+//     The current velocity of the projectile.
+//
+//   penetration:
+//     The maximum thickness the projectile can penetrate in mm. (inclusive)
+//
+//   gravityMultiplier:
+//     The value by which Physics.gravity is multiplied.
+//
+//   ricochetAngle:
+//     The maximum angle at which a ricochet can occur. (inclusive)
+//
+//   layerMask:
+//     The layer mask the projectile uses to filter collisions.
+public static ProjectileResult CalculateTrajectory(Vector3 position, Vector3 velocity, float penetration, float gravityMultiplier, float ricochetAngle, int layerMask);
 ```
 ## Technologies
 - C#
