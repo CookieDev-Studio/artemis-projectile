@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+//Intended for demo purposes only.
+public sealed class PlayerController : MonoBehaviour
 {
     public GameObject head;
     public GameObject body;
     public GameObject BulletPrefab;
-    public GameObject RigidBodyBulletPrefab;
 
-    [SerializeField] private float jumpHight;
     [SerializeField] private float speed;
-    [SerializeField] private float sprintMultiplier;
+    [SerializeField] private float speedMultiplier = 0.5f;
     [SerializeField] private float sensitivity;
     [SerializeField] private float zoomLevel = 2;
 
     private float standardSpeed;
 
     private Rigidbody rigidBody;
-    new private BoxCollider collider;
     private Vector3 rotation;
-    private bool grounded;
 
-    void Start()
+    private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        collider = body.GetComponent<BoxCollider>();
 
         rotation = transform.eulerAngles;
 
@@ -36,54 +32,33 @@ public class PlayerController : MonoBehaviour
 
         Destroy(body.GetComponent<MeshRenderer>());
         Destroy(body.GetComponent<MeshFilter>());
-
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
             SpawnBullet();
-        }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Camera.main.fieldOfView /= zoomLevel;
             sensitivity /= zoomLevel;
-            //Time.timeScale = 0.1f;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             Camera.main.fieldOfView *= zoomLevel;
             sensitivity *= zoomLevel;
-            //Time.timeScale = 1;
         }
-    }
+        if (Input.GetKey(KeyCode.Space))
+            Time.timeScale = 0.01f;
+        else
+            Time.timeScale = 1;
 
-    void FixedUpdate()
-    {
         if (Input.GetKey(KeyCode.LeftShift))
-            speed = standardSpeed * sprintMultiplier;
+            speed = standardSpeed * speedMultiplier;
         else
             speed = standardSpeed;
 
-        if (
-            Physics.BoxCast(
-                body.transform.position,
-                new Vector3(collider.bounds.extents.x, 0.1f, collider.bounds.extents.z),
-                Vector3.down,
-                Quaternion.identity,
-                collider.bounds.extents.y,
-                (1 << 9)))
-        {
-            grounded = true;
-        }
-        else
-            grounded = false;
-
-        //movement
-        if (grounded)
-        {
             Vector3 movement = Vector3.zero;
 
             if (Input.GetKey(KeyCode.W))
@@ -95,41 +70,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
                 movement += Vector3.back;
 
-            rigidBody.MovePosition(rigidBody.position + transform.TransformDirection(movement.normalized) * speed * Time.fixedDeltaTime);
-
-            //jump
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Vector3 velocity = Vector3.zero;
-
-                if (Input.GetKey(KeyCode.W))
-                    velocity += Vector3.forward;
-                if (Input.GetKey(KeyCode.A))
-                    velocity += Vector3.left;
-                if (Input.GetKey(KeyCode.D))
-                    velocity += Vector3.right;
-                if (Input.GetKey(KeyCode.S))
-                    velocity += Vector3.back;
-
-                velocity = velocity.normalized * speed;
-                velocity.y = jumpHight;
-
-                rigidBody.velocity = transform.TransformDirection(velocity);
-            }
-        }
-        else
-        {
-            Vector3 localVelocity = transform.InverseTransformDirection(rigidBody.velocity);
-
-            if (Input.GetKey(KeyCode.W) && localVelocity.z < standardSpeed)
-                rigidBody.velocity += transform.TransformDirection(Vector3.forward) * standardSpeed * 2 * Time.deltaTime;
-            if (Input.GetKey(KeyCode.A) && localVelocity.x > -standardSpeed)
-                rigidBody.velocity += transform.TransformDirection(Vector3.left) * standardSpeed * 2 * Time.deltaTime;
-            if (Input.GetKey(KeyCode.D) && localVelocity.x < standardSpeed)
-                rigidBody.velocity += transform.TransformDirection(Vector3.right) * standardSpeed * 2 * Time.deltaTime;
-            if (Input.GetKey(KeyCode.S) && localVelocity.z > -standardSpeed)
-                rigidBody.velocity += transform.TransformDirection(Vector3.back) * standardSpeed * 2 * Time.deltaTime;
-        }
+            rigidBody.MovePosition(rigidBody.position + transform.TransformDirection(movement.normalized) * speed * Time.deltaTime);
     }
 
     void LateUpdate()
@@ -144,10 +85,7 @@ public class PlayerController : MonoBehaviour
 
     void SpawnBullet()
     {
-        //GameObject bullet = Instantiate(BulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.Euler(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 1));
         GameObject bullet = Instantiate(BulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.identity);
-        GameObject rbBullet = Instantiate(RigidBodyBulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.identity);
         Destroy(bullet, 3);
-        Destroy(rbBullet, 3);
     }
 }

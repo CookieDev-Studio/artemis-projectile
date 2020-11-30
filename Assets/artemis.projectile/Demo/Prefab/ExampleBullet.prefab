@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6043145849923807601}
+  - component: {fileID: 4768621837006262123}
   - component: {fileID: 6306622401768653117}
   - component: {fileID: 9193399784155111521}
-  - component: {fileID: 4768621837006262123}
   m_Layer: 0
   m_Name: ExampleBullet
   m_TagString: Untagged
@@ -33,6 +33,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4768621837006262123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043145849923807600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630451e7d22475c4fb33aec25a59ca33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravityMultiplier: 1
+  _speed: 100
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  _penetrationEnabled: 1
+  _penetration: 60
+  _ricochetEnabled: 1
+  _ricochetAngle: 15
+  _debugEnabled: 1
+  _ignoreDestroy: 1
+  _pathColor: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _penetrationColor: {r: 1, g: 0, b: 1, a: 1}
+  _updateLoop: 0
+  bulletmarkPrefab: {fileID: 6454624227189403406, guid: d05453ac2bc5df74bb27e5dbd515bb1d,
+    type: 3}
+  sparksPrefab: {fileID: 1191433442196009300, guid: ea494bf371ebe7e49a897a152d03b8aa,
+    type: 3}
 --- !u!23 &6306622401768653117
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82,31 +113,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6043145849923807600}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4768621837006262123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6043145849923807600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 630451e7d22475c4fb33aec25a59ca33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gravityMultiplier: 1
-  _speed: 10
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _penetrationEnabled: 1
-  _penetration: 60
-  _ricochetEnabled: 1
-  _ricochetAngle: 15
-  _debugEnabled: 1
-  _debugPathSurvivesDestroy: 1
-  _pathColor: {r: 1, g: 1, b: 1, a: 1}
-  _normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _penetrationColor: {r: 1, g: 0, b: 1, a: 1}
-  bulletmarkPrefab: {fileID: 6454624227189403406, guid: d05453ac2bc5df74bb27e5dbd515bb1d,
-    type: 3}

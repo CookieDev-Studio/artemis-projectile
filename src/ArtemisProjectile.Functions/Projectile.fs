@@ -3,18 +3,27 @@
 open UnityEngine
 open System
 
-///test
+///Core functions of Artemis Projectile
 module Projectile =
-    ///<summary>Calculates the path a projectile will travel in 1 fixed time step.</summary>
-    ///<param name="position"> the current position of the projectile</param>
+    ///<summary>Calculates the path a projectile will travel in 1 time step.</summary>
+    ///<param name="position">The current position of the projectile.</param>
+    ///<param name="velocity">The current velocity of the projectile.</param>
+    ///<param name="penetration">The maximum thickness the projectile can penetrate in mm. (inclusive)</param>
+    ///<param name="gravityMultiplier">The value by which Physics.gravity is multiplied.</param>
+    ///<param name="ricochetAngle">The maximum angle at which a ricochet can occur. (inclusive)</param>
+    ///<param name="layerMask">The layer mask the projectile uses to filter collisions.</param>
     let CalculateTrajectory position (velocity : Vector3 ) (penetration : single) gravityMultiplier ricochetAngle layerMask = 
+        let timeStep = 
+            if Time.inFixedTimeStep 
+                then Time.fixedDeltaTime 
+                else Time.deltaTime
         let velocityThisStep = 
             Vector3
                 ( velocity.x,
-                  velocity.y + Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime,
+                  velocity.y + Physics.gravity.y * gravityMultiplier * timeStep,
                   velocity.z)
 
-        let positionThisStep = position + velocityThisStep * Time.fixedDeltaTime
+        let positionThisStep = position + velocityThisStep * timeStep
 
         let rec GetResults (startPoint : Vector3) (endPoint : Vector3) distanceLeft projectileResult =
             let mutable contact = RaycastHit()

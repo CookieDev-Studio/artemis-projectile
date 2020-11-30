@@ -2,13 +2,18 @@
 <doc>
 <assembly><name>ArtemisProjectile.Functions</name></assembly>
 <members>
-<member name="M:ArtemisProjectile.Projectile.CalculateTrajectory(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Single,System.Int32)">
+<member name="M:ArtemisProjectile.Projectile.CalculateTrajectory(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Int32)">
 <summary>Calculates the path a projectile will travel in 1 fixed time step.</summary>
-<param name="position"> the current position of the projectile</param>
+<param name="position"> The current position of the projectile.</param>
+<param name="velocity"> The current velocity of the projectile.</param>
+<param name="penetration">The maximum thickness the projectile can penetrate in mm. (inclusive)</param>
+<param name="gravityMultiplier">The value by which Physics.gravity is multiplied.</param>
+<param name="ricochetAngle">The maximum angle at which a ricochet can occur. (inclusive)</param>
+<param name="layerMask">The layer mask the projectile uses to filter collisions.</param>
 </member>
 <member name="T:ArtemisProjectile.Projectile">
 <summary>
-test
+Functions
 </summary>
 </member>
 </members>

@@ -21,7 +21,7 @@
         </member>
         <member name="P:ArtemisProjectile.ProjectileController.LayerMask">
             <summary>
-            The layer mask the projectile uses to filter collisions.
+            The layer mask that is applied to the projectile's collisions.
             </summary>
         </member>
         <member name="P:ArtemisProjectile.ProjectileController.PenetrationEnabled">
@@ -46,12 +46,12 @@
         </member>
         <member name="P:ArtemisProjectile.ProjectileController.DebugEnabled">
             <summary>
-            Enable Debbuging tools
+            Enable debbuging tools.
             </summary>
         </member>
-        <member name="P:ArtemisProjectile.ProjectileController.DebugPathSurvivesDestroy">
+        <member name="P:ArtemisProjectile.ProjectileController.IgnoreDestroy">
             <summary>
-            Lines drawn during debug will remain after the projectile is destroyed
+            Debug lines will keep rendering after the proectile is destroyed.
             </summary>
         </member>
         <member name="P:ArtemisProjectile.ProjectileController.PathColor">
@@ -69,46 +69,52 @@
             The color the path through an object is drawn
             </summary>
         </member>
+        <member name="P:ArtemisProjectile.ProjectileController.UpdateLoop">
+            <summary>
+            The update loop that the projectile is running in.
+            </summary>
+        </member>
         <member name="P:ArtemisProjectile.ProjectileController.Velocity">
             <summary>
-            The velocity vector of the projectile
+            The velocity vector of the projectile.
             </summary>
         </member>
         <member name="M:ArtemisProjectile.ProjectileController.OnPenetrationEnter(UnityEngine.RaycastHit,UnityEngine.Vector3,System.Single)">
             <summary>
-            Called when the projectile sucssesfully penetrates an object
+            Called when the projectile sucssesfully penetrates an object.
             </summary>
-            <param name="entry">The RaycastHit of when the projectile entered the object</param>
-            <param name="velocity">The velocity at which the projectile struck the object</param>
-            <param name="thickness">The reletive thickness of the object</param>
+            <param name="entry">The RaycastHit of when the projectile entered the object.</param>
+            <param name="velocity">The velocity at which the projectile struck the object.</param>
+            <param name="thickness">The reletive thickness of the object.</param>
         </member>
         <member name="M:ArtemisProjectile.ProjectileController.OnPenetrationExit(UnityEngine.RaycastHit,UnityEngine.Vector3)">
             <summary>
-            Called when the projectile exits the object
+            Called when the projectile exits a penetrated object
             </summary>
-            <param name="exit">The RacastHit of when the projectile exited the object</param>
-            <param name="velocity">The velocity at which the projectile exited the object</param>
+            <param name="exit">The RacastHit of when the projectile exited the object.</param>
+            <param name="velocity">The velocity at which the projectile exited the object.</param>
         </member>
-        <member name="M:ArtemisProjectile.ProjectileController.OnPenetrationFailed(UnityEngine.RaycastHit,UnityEngine.Vector3)">
+        <member name="M:ArtemisProjectile.ProjectileController.OnPenetrationFailed(UnityEngine.RaycastHit,UnityEngine.Vector3,System.Single)">
             <summary>
             Called when the Projectile fails to penetrate an object. if penetration is disabled, this will always be called upon collision.
             </summary>
-            <param name="hit">The RaycastHit of the collision with the object</param>
-            <param name="velocity">The velocity at which the projectile struck the object</param>
+            <param name="hit">The RaycastHit of the collision with the object.</param>
+            <param name="velocity">The velocity at which the projectile struck the object.</param>
+            <param name="thickness">The thickness of the struck object.</param>
         </member>
         <member name="M:ArtemisProjectile.ProjectileController.OnRicochet(System.Single,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.RaycastHit)">
             <summary>
             Called when the projectile ricochets off of an object
             </summary>
-            <param name="inAngle"></param>
-            <param name="entryDirection"></param>
-            <param name="exitDirection"></param>
+            <param name="inAngle">The angle that the projectile hit the surface.</param>
+            <param name="entryVelocity">The velocity the projectile hit the surface.</param>
+            <param name="exitVelocity">The velocity of the projectile after reflection.</param>
             <param name="hit"></param>
         </member>
-        <member name="M:ArtemisProjectile.ProjectileController.FixedUpdate">
-            <inheritdoc/> 
-        </member>
         <member name="M:ArtemisProjectile.ProjectileController.Update">
+            <inheritdoc/>
+        </member>
+        <member name="M:ArtemisProjectile.ProjectileController.FixedUpdate">
             <inheritdoc/>
         </member>
         <member name="M:ArtemisProjectile.ProjectileController.OnDestroy">

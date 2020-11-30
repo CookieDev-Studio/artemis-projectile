@@ -9,6 +9,7 @@ namespace ArtemisProjectile
         SerializedProperty speed;
         SerializedProperty gravityMultiplier;
         SerializedProperty layerMask;
+        SerializedProperty updateLoop;
 
         SerializedProperty penetrationEnabled;
         SerializedProperty penetration;
@@ -31,6 +32,7 @@ namespace ArtemisProjectile
             speed = serializedObject.FindProperty("_speed");
             gravityMultiplier = serializedObject.FindProperty("_gravityMultiplier");
             layerMask = serializedObject.FindProperty("_layerMask");
+            updateLoop = serializedObject.FindProperty("_updateLoop");
 
             penetrationEnabled = serializedObject.FindProperty("_penetrationEnabled");
             penetration = serializedObject.FindProperty("_penetration");
@@ -39,7 +41,7 @@ namespace ArtemisProjectile
             ricochetAngle = serializedObject.FindProperty("_ricochetAngle");
 
             debugEnabled = serializedObject.FindProperty("_debugEnabled");
-            debugPathSurvivesDestroy = serializedObject.FindProperty("_debugPathSurvivesDestroy");
+            debugPathSurvivesDestroy = serializedObject.FindProperty("_ignoreDestroy");
             pathColor = serializedObject.FindProperty("_pathColor");
             normalColor = serializedObject.FindProperty("_normalColor");
             penetrationColor = serializedObject.FindProperty("_penetrationColor");
@@ -51,13 +53,12 @@ namespace ArtemisProjectile
             DrawDefaultInspector();
             EditorGUILayout.Space();
 
-            var indentedWidth = Mathf.Max(Screen.width * 0.45f - 25, 134);
-
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(speed);
             EditorGUILayout.PropertyField(gravityMultiplier);
             EditorGUILayout.PropertyField(layerMask);
+            EditorGUILayout.PropertyField(updateLoop);
             EditorGUILayout.Space();
 
             //penetration
@@ -67,9 +68,7 @@ namespace ArtemisProjectile
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(penetrationEnabled);
                 if (penetrationEnabled.boolValue)
-                {
-                    EditorGUILayout.PropertyField(penetration, new GUIContent("Penetration (mm)"));
-                }
+                    EditorGUILayout.PropertyField(penetration);
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
@@ -82,7 +81,14 @@ namespace ArtemisProjectile
                 EditorGUILayout.PropertyField(ricochetEnabled);
 
                 if (ricochetEnabled.boolValue)
-                    ricochetAngle.floatValue = Mathf.Clamp(EditorGUILayout.FloatField("Ricochet Angle", ricochetAngle.floatValue), 0, 90);
+                {
+                    var content = new GUIContent()
+                    {
+                        text = ricochetAngle.displayName,
+                        tooltip = ricochetAngle.tooltip
+                    };
+                    ricochetAngle.floatValue = Mathf.Clamp(EditorGUILayout.FloatField(content, ricochetAngle.floatValue), 0, 90);
+                }
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
@@ -95,15 +101,7 @@ namespace ArtemisProjectile
                 EditorGUILayout.PropertyField(debugEnabled);
                 if (debugEnabled.boolValue)
                 {
-
-                    EditorGUILayout.PropertyField(
-                        debugPathSurvivesDestroy,
-                        new GUIContent()
-                        {
-                            text = "Ignore Destroy",
-                            tooltip = "Debug lines will keep rendering even after the proectile is destroyed"
-                        });
-
+                    EditorGUILayout.PropertyField(debugPathSurvivesDestroy);
                     //colors
                     EditorGUILayout.PropertyField(pathColor);
                     EditorGUILayout.PropertyField(normalColor);

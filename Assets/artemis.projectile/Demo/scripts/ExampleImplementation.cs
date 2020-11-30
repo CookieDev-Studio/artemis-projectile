@@ -22,7 +22,7 @@ namespace ArtemisProjectile.Demo
             Instantiate(bulletmarkPrefab, exit.point + exit.normal * 0.01f, Quaternion.LookRotation(exit.normal)).GetComponent<SpriteRenderer>().color = color;
         }
 
-        protected override void OnPenetrationFailed(RaycastHit hit, Vector3 velocity)
+        protected override void OnPenetrationFailed(RaycastHit hit, Vector3 velocity, float thickness)
         {
             Destroy(gameObject);
         }

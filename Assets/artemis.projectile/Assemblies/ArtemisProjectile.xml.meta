@@ -4,7 +4,7 @@ TextScriptImporter:
   externalObjects:
   - first:
       type: 
-      assembly: ArtemisProjectile
+      assembly: 
       name: 
     second: {instanceID: 0}
   userData: 
