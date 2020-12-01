@@ -51,7 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _penetrationEnabled: 1
-  _penetration: 60
+  _penetration: 1000
   _ricochetEnabled: 1
   _ricochetAngle: 15
   _debugEnabled: 1

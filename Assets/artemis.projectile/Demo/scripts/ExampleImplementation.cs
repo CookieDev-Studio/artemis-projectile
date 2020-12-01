@@ -18,7 +18,7 @@ namespace ArtemisProjectile.Demo
             mark.GetComponent<SpriteRenderer>().color = color;
         }
 
-        protected override void OnPenetrationExit(RaycastHit exit, Vector3 velocity)
+        protected override void OnPenetrationExit(RaycastHit exit, Vector3 velocity, float thickness)
         {
             Instantiate(bulletmarkPrefab, exit.point + exit.normal * 0.01f, Quaternion.LookRotation(exit.normal)).GetComponent<SpriteRenderer>().color = color;
         }

@@ -192,7 +192,8 @@ namespace ArtemisProjectile
         /// </summary>
         /// <param name="exit">The RacastHit of when the projectile exited the object.</param>
         /// <param name="velocity">The velocity at which the projectile exited the object.</param>
-        protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity) { }
+        /// <param name="thickness">The reletive thickness of the object.</param>
+        protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity, float thickness) { }
 
         /// <summary>
         /// Called when the Projectile fails to penetrate an object. if penetration is disabled, this will always be called upon collision.
@@ -267,7 +268,7 @@ namespace ArtemisProjectile
 
                     case HitResult.Penetration penetration:
                         OnPenetrationEnter(penetration.entry, penetration.velocity, penetration.thickness);
-                        OnPenetrationExit(penetration.exit, penetration.velocity);
+                        OnPenetrationExit(penetration.exit, penetration.velocity, penetration.thickness);
                         if (DebugEnabled)
                         {
                             debugLines.Add(new DebugLine(curPosition, penetration.entry.point, PathColor));
