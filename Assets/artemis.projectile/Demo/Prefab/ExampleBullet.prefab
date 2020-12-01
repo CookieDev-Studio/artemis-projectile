@@ -54,7 +54,7 @@ MonoBehaviour:
   _penetration: 60
   _ricochetEnabled: 1
   _ricochetAngle: 15
-  _debugEnabled: 0
+  _debugEnabled: 1
   _ignoreDestroy: 1
   _pathColor: {r: 1, g: 1, b: 1, a: 1}
   _normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

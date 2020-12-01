@@ -32,7 +32,6 @@ namespace ArtemisProjectile.Demo
                           Quaternion.LookRotation(Vector3.Reflect(velocity.normalized, hit.normal))).GetComponent<ParticleSystem>();
 
             var hitAngle = Vector3.Angle(velocity.normalized, hit.normal);
-            Debug.Log((180 - hitAngle) / 180);
 
             var main = sparks.main;
             main.startSpeed = velocity.magnitude / 25 * Mathf.Max((180 - hitAngle) / 180, 0.1f);
