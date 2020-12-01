@@ -91,7 +91,7 @@ protected virtual void OnPenetrationEnter(RaycastHit entry, Vector3 velocity, fl
 //
 //   thickness:
 //     The reletive thickness of the object
-protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity) { }
+protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity, float thickness) { }
 
 // Summary:
 //     Called when the Projectile fails to penetrate an object. if penetration is disabled,
