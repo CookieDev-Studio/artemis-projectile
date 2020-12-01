@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravityMultiplier: 1
-  _speed: 100
+  _speed: 600
   _layerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -54,7 +54,7 @@ MonoBehaviour:
   _penetration: 60
   _ricochetEnabled: 1
   _ricochetAngle: 15
-  _debugEnabled: 1
+  _debugEnabled: 0
   _ignoreDestroy: 1
   _pathColor: {r: 1, g: 1, b: 1, a: 1}
   _normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

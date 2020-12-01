@@ -26,12 +26,6 @@ public sealed class PlayerController : MonoBehaviour
         standardSpeed = speed;
 
         Cursor.lockState = CursorLockMode.Locked;
-
-        Destroy(head.GetComponent<MeshRenderer>());
-        Destroy(head.GetComponent<MeshFilter>());
-
-        Destroy(body.GetComponent<MeshRenderer>());
-        Destroy(body.GetComponent<MeshFilter>());
     }
 
     private void Update()
@@ -59,18 +53,18 @@ public sealed class PlayerController : MonoBehaviour
         else
             speed = standardSpeed;
 
-            Vector3 movement = Vector3.zero;
+        Vector3 movement = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W))
-                movement += Vector3.forward;
-            if (Input.GetKey(KeyCode.A))
-                movement += Vector3.left;
-            if (Input.GetKey(KeyCode.D))
-                movement += Vector3.right;
-            if (Input.GetKey(KeyCode.S))
-                movement += Vector3.back;
+        if (Input.GetKey(KeyCode.W))
+            movement += Vector3.forward;
+        if (Input.GetKey(KeyCode.A))
+            movement += Vector3.left;
+        if (Input.GetKey(KeyCode.D))
+            movement += Vector3.right;
+        if (Input.GetKey(KeyCode.S))
+            movement += Vector3.back;
 
-            rigidBody.MovePosition(rigidBody.position + transform.TransformDirection(movement.normalized) * speed * Time.deltaTime);
+        rigidBody.MovePosition(rigidBody.position + transform.TransformDirection(movement.normalized) * speed * Time.deltaTime);
     }
 
     void LateUpdate()
