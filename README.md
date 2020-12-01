@@ -88,6 +88,9 @@ protected virtual void OnPenetrationEnter(RaycastHit entry, Vector3 velocity, fl
 //
 //   velocity:
 //     The velocity at which the projectile exited the object
+//
+//   thickness:
+//     The reletive thickness of the object
 protected virtual void OnPenetrationExit(RaycastHit exit, Vector3 velocity) { }
 
 // Summary:
