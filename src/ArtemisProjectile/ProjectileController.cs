@@ -295,7 +295,7 @@ namespace ArtemisProjectile
             transform.position = result.position;
             Velocity = result.velocity;
         }
-       
+
         ///<inheritdoc/>
         protected virtual void OnDestroy()
         {

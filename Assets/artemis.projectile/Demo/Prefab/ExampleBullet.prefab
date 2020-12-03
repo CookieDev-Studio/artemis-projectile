@@ -51,9 +51,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _penetrationEnabled: 1
-  _penetration: 1000
+  _penetration: 60
   _ricochetEnabled: 1
-  _ricochetAngle: 15
+  _ricochetAngle: 90
   _debugEnabled: 1
   _ignoreDestroy: 1
   _pathColor: {r: 1, g: 1, b: 1, a: 1}
