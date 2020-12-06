@@ -12,11 +12,8 @@ module Projectile =
     ///<param name="gravityMultiplier">The value by which Physics.gravity is multiplied.</param>
     ///<param name="ricochetAngle">The maximum angle at which a ricochet can occur. (inclusive)</param>
     ///<param name="layerMask">The layer mask the projectile uses to filter collisions.</param>
-    let CalculateTrajectory position (velocity : Vector3 ) (penetration : single) gravityMultiplier ricochetAngle layerMask = 
-        let timeStep = 
-            if Time.inFixedTimeStep 
-                then Time.fixedDeltaTime 
-                else Time.deltaTime
+    ///<param name="timeStep">The the length in seconds of the step. This is usualy Time.fixedDeltaTime or Time.deltaTime but can be any value</param>
+    let CalculateTrajectory position (velocity : Vector3 ) (penetration : single) gravityMultiplier ricochetAngle layerMask timeStep = 
         let velocityThisStep = 
             Vector3
                 ( velocity.x,

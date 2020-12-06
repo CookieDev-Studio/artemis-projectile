@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{980573BB-CD78-014C-6FC5-61E709F5697E}</ProjectGuid>
+    <ProjectGuid>{A5E56EC6-0CC7-3C7E-90FE-6896C297058D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Tests</AssemblyName>
+    <AssemblyName>Edit Mode Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -55,7 +55,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\EditModeTests\NewTestScript.cs" />
+    <Compile Include="Assets\Tests\EditModeTests\CalculateTrajectoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Tests\EditModeTests\EditModeTests.asmdef" />

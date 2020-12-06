@@ -220,7 +220,7 @@ namespace ArtemisProjectile
         protected virtual void Update()
         {
             if (UpdateLoop == UpdateLoop.Update)
-                MovePosition();
+                MovePosition(Time.deltaTime);
 
             if (DebugEnabled)
                 ProjectileControllerExtentions.RenderLines(debugLines);
@@ -230,10 +230,10 @@ namespace ArtemisProjectile
         protected virtual void FixedUpdate()
         {
             if (UpdateLoop == UpdateLoop.FixedUpdate)
-                MovePosition();
+                MovePosition(Time.fixedDeltaTime);
         }
 
-        private void MovePosition()
+        private void MovePosition(float timeStep)
         {
             result = Projectile.CalculateTrajectory(
                 transform.position,
@@ -241,7 +241,8 @@ namespace ArtemisProjectile
                 Penetration,
                 GravityMultiplier,
                 RicochetAngle,
-                LayerMask);
+                LayerMask,
+                timeStep);
 
             var curPosition = transform.position;
             for (var i = 0; i < result.results.Length; i++)
