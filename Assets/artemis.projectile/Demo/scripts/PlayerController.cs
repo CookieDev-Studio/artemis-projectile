@@ -3,17 +3,15 @@
 //Intended for demo purposes only.
 public sealed class PlayerController : MonoBehaviour
 {
-    public GameObject head;
-    public GameObject body;
-    public GameObject BulletPrefab;
-
-    [SerializeField] private float speed;
+    [SerializeField] private GameObject head;
+    [SerializeField] private GameObject BulletPrefab;
+    [SerializeField] private float speed = 6;
+    [SerializeField] private float bulletDuration = 3;
     [SerializeField] private float speedMultiplier = 0.5f;
     [SerializeField] private float sensitivity;
     [SerializeField] private float zoomLevel = 2;
 
     private float standardSpeed;
-
     private Rigidbody rigidBody;
     private Vector3 rotation;
 
@@ -80,6 +78,6 @@ public sealed class PlayerController : MonoBehaviour
     void SpawnBullet()
     {
         GameObject bullet = Instantiate(BulletPrefab, head.transform.position + head.transform.forward, head.transform.rotation * Quaternion.identity);
-        Destroy(bullet, 3);
+        Destroy(bullet, bulletDuration);
     }
 }

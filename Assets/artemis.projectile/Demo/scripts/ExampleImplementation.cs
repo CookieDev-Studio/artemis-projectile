@@ -46,12 +46,5 @@ namespace ArtemisProjectile.Demo
             //Destroy Bullet
             Destroy(gameObject);
         }
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-
-            Debug.Log(transform.position.y);
-            Debug.Break();
-        }
     }
 }

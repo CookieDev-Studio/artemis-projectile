@@ -701,6 +701,11 @@ PrefabInstance:
       propertyPath: _updateLoop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4768621837006262123, guid: 34585ff2c98d16b4cb5788146f5e4d16,
+        type: 3}
+      propertyPath: _ricochetAngle
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6043145849923807600, guid: 34585ff2c98d16b4cb5788146f5e4d16,
         type: 3}
       propertyPath: m_Name
@@ -1590,10 +1595,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 1118100319}
-  body: {fileID: 684948630}
   BulletPrefab: {fileID: 6043145849923807600, guid: 34585ff2c98d16b4cb5788146f5e4d16,
     type: 3}
   speed: 6
+  bulletDuration: 6
   speedMultiplier: 0.5
   sensitivity: 600
   zoomLevel: 14
